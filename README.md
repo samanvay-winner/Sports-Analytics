@@ -18,7 +18,7 @@ The dataset provided to us is the FIFA'19 dataset. It has 81 features, which mak
 
 ## Our approach:
 
-#### Part 1:
+### Part 1:
 Important consideration points:
 1) Lionel Messi is a regular and a very important player on the field for FC Barcelona. We need someone to replace him in the team immediately, someone who can take to the pitch immediately.
 
@@ -30,3 +30,48 @@ What we did:
 Messi is a Right Wing player by position, but plays mostly in attacking zones, scoring goals. For his replacement, we’d desire the same characteristics: Attacking and Midfield presence.
 
 We **innovatively** generated a **new metric** for “**Difference from Messi**” based on the ratings for RF, RW, RS, RAM, and the various ratings for a player’s skill (only related to Attacking and midfielding).
+
+
+
+---
+
+
+### Part 2:
+Since we have to make a prediction, and also showcase it to the upper management (the club coach and other important stakeholders), **we prefer a simpler model that is explainable, over a complex (and potentially more accurate) but non-explainable model**.
+
+Upon our analysis and data exploration, we observe that:
+1) Wage is biquadratically dependant on Overall Score, and linearly dependant on Value of a player, their release clause and their age (years of experience would be a better term).
+
+2) Also, Wage of a player increases with their International Reputation, which is as expected, since clubs would be willing to pay higher amounts for better players of International repute.
+
+
+Hence, we make **2 ML models**:
+1. Polynomial of degree 4: B/w Wage and Overall Score.
+
+2. Multiple Linear Regression: B/w Wage and Value, Release Clause, Age.
+
+Next, we **ensemble** the learnings of these 2 models, to get a final model with better predictive power (without overfitting!), by taking the best of both models!
+This is a relatively simpler, and very easy to explain model, which would be preferred by the important (and not so technically oriented) stakeholders.
+
+We use this ensemble model for the prediction of the wages of our 3 selected players in Part 1.
+
+
+
+---
+
+
+### Part 3:
+Following similar exploration, and a preference for simpler and explainable models, we observe that:
+1) We found that Transfer Clause is biquadratically dependant on the Potential of the player. As the problem statement also requires using the Potential, we pay special emphasis on it here.
+
+2) Also, Transfer Clause is linearly dependant on Value of a player, and their Wage.
+
+
+Hence, we again make **2 ML models**:
+1. Polynomial of degree 4: B/w Transfer Clause and Potential.
+
+2. Multiple Linear Regression: B/w Transfer Clause and Value, Wage of a player.
+
+Next, we **ensemble** the learnings of these 2 models, to get a final model with better predictive power (without overfitting!), by taking the best of both models!
+
+We use this ensemble model for the prediction of the Transfer Clause of our 3 selected players in Part 1.
